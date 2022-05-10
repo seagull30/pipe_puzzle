@@ -1,4 +1,5 @@
 #include "Framework/App.h"
+
 int main(void)
 {
 	if (false == App_Init())
