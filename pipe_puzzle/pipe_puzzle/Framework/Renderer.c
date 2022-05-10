@@ -1,13 +1,17 @@
 #include "common.h"
 #include "Renderer.h"
 
-HANDLE s_consoleHandel;
+HANDLE s_consoleHandle;
 HANDLE s_screens[2];
 int32 s_backIndex;
 bool   Renderer_Init(void)
 {
 	// 1. 콘솔에 대한 핸들을 얻는다.
-	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	s_consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (INVALID_HANDLE_VALUE == s_consoleHandle)
+	{
+		return false;
+	}
 
 	// 2. 스크린을 만든다.
 	for (int32 i = 0; i < 2; ++i)
@@ -21,7 +25,7 @@ bool   Renderer_Init(void)
 
 void   Renderer_Cleanup(void)
 {
-	CloseHandle(s_consoleHandel);
+	CloseHandle(s_consoleHandle);
 	CloseHandle(s_screens[0]);
 	CloseHandle(s_screens[1]);
 }

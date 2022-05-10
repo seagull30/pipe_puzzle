@@ -12,7 +12,7 @@ void   Timer_Init(int32 fps)
 	s_prevTick = clock();
 }
 
-void   Timer_Update(void)
+bool   Timer_Update(void)
 {
 	// 1. 현재 시점을 구한다.,
 	clock_t currentTick = clock();
