@@ -2,6 +2,7 @@
 #include "common.h"
 #include "Renderer.h"
 #include "timer.h"
+#include "Input.h"
 
 bool App_Init()
 {
@@ -9,38 +10,41 @@ bool App_Init()
 	{
 		return false;
 	}
+	
 	return true;
 }
 
 void processInput()
 {
-
+	Input_Update();
 }
 
-float count = 0;
+char str[128];
 void undate()
 {
-	// 비례식
-	// 프레임 : 시간
-	// 1 : deltaTime = fps : 1
-	// 1 = deltaTime * fps 
-	// fps = 1 /deltaTime
-	count += DELTA_TIME;
-	if (count > 0.5 && count < 1)
-	{
-		char str[128] = "";
-		sprintf_s(str, sizeof(str), "현재 FPS : %d", (int32)(1 / Timer_GetDeltaTime()));
-		Renderer_DrawText(str, strlen(str));
-	}
-	else if (count > 1)
-		count = 0;
+	sprintf_s(str, sizeof(str), "현재 입력 없음");
 
-	
+	if (Input_GetKey(VK_UP))
+	{
+		sprintf_s(str, sizeof(str), "위쪽 화살표 눌림");
+	}
+
+	if (Input_GetKey(VK_DOWN))
+	{
+		sprintf_s(str, sizeof(str), "아래쪽 화살표 눌림");
+	}
+
+	if (Input_GetKey(VK_LEFT) && Input_GetKey(VK_RIGHT))
+	{
+		sprintf_s(str, sizeof(str), "왼쪽, 오른쪽 화살표 동시 눌림");
+	}
+
 }
 
 
 void render()
 {
+	Renderer_DrawText(str, strlen(str));
 	Renderer_Flip();
 }
 
