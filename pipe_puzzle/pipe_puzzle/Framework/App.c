@@ -3,6 +3,8 @@
 #include "Renderer.h"
 #include "timer.h"
 #include "Input.h"
+#include "Random.h"
+#include "text.h"
 
 bool App_Init()
 {
@@ -10,6 +12,7 @@ bool App_Init()
 	{
 		return false;
 	}
+	Random_Init();
 	
 	return true;
 }
@@ -19,36 +22,31 @@ void processInput()
 	Input_Update();
 }
 
-char str[128];
+
+Text text[128];
 void undate()
 {
-	sprintf_s(str, sizeof(str), "현재 입력 없음");
-
-	if (Input_GetKey(VK_UP))
+	//TextCopyWithWhite(text, L"우리반의 존잘은 안재현이다");
+	TextCopy(text, L"우리반의 존잘은 안재현이다",TEXT_COLOR_BLACK);
+	for (int32 i = 9; text[i].Char.UnicodeChar != L'\0'; ++i)
 	{
-		sprintf_s(str, sizeof(str), "위쪽 화살표 눌림");
-	}
+		text[i].Attributes = BACK_COLOR_RED | TEXT_COLOR_WHITE | TEXT_COLOR_STRONG;
 
-	if (Input_GetKey(VK_DOWN))
-	{
-		sprintf_s(str, sizeof(str), "아래쪽 화살표 눌림");
 	}
+	
 
-	if (Input_GetKey(VK_LEFT) && Input_GetKey(VK_RIGHT))
-	{
-		sprintf_s(str, sizeof(str), "왼쪽, 오른쪽 화살표 동시 눌림");
-	}
 
 }
 
 
 void render()
 {
-	Renderer_DrawText(str, strlen(str));
+	Renderer_DrawText(text, TextLen(text),10,10);
+	
 	Renderer_Flip();
 }
 
-void cleanup()
+void cleanup(void)
 {
 	Renderer_Cleanup();
 }

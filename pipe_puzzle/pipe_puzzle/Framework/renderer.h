@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Type.h"
+#include "text.h"
 
 /// <summary>
 /// 랜더러를 초기화한다.
@@ -18,4 +19,12 @@ void   Renderer_Cleanup(void);
 /// </summary>
 void   Renderer_Flip(void);
 
-void Renderer_DrawText(const char* text, int32 numberOfChar);
+/// <summary>
+/// 화면을 바꾼다.
+/// </summary>
+/// <param name="text">텍스트</param>
+/// <param name="numberOfChar">출력할 문자의 개수</param>
+/// <param name="x">출력할 위치</param>
+/// <param name="y">출력할 위치</param>
+
+void Renderer_DrawText(const Text* text, int32 numberOfChar, int32 x, int32 y);

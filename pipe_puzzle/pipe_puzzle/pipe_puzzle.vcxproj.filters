@@ -26,6 +26,12 @@
     <ClCompile Include="Framework\Input.c">
       <Filter>Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Random.c">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\text.c">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\App.h">
@@ -33,13 +39,19 @@
     </ClInclude>
     <ClInclude Include="Type.h" />
     <ClInclude Include="common.h" />
-    <ClInclude Include="Framework\renderer.h">
+    <ClInclude Include="Framework\Renderer.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Timer.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Input.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Random.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\text.h">
       <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
